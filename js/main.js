@@ -1,9 +1,9 @@
+// Event listener for main submit button enter key
 document.addEventListener("keyup", function(event) {
     if (event.key === "Enter" && document.getElementById('raceDistance').value !== "") {
         document.getElementById("btn").click()
     }
 })
-
 
 function createAllInputs () {
     let raceDistance = document.getElementById('raceDistance').value
@@ -18,6 +18,7 @@ function createAllInputs () {
     // Full distance
     let numOfKms = document.createElement("h2")
     numOfKms.innerHTML = document.getElementById('raceDistance').value
+    numOfKms.id = "race-distance"
     document.getElementById('pace-per-km').appendChild(numOfKms);
 
     // Half distance
@@ -48,7 +49,11 @@ function createAllInputs () {
         let kmLabel = document.createElement("li");
         kmLabel.className = currentKm
         kmLabel.className += " kmLabel"
-        kmLabel.innerHTML = i
+        if(i > raceDistance){ // If distance isn't a whole num, label with decimal (21.1 -> 0.1)
+            let diff = i - raceDistance
+            kmLabel.innerHTML = (1 - diff).toFixed(2)
+        } else {kmLabel.innerHTML = currentKm}
+
         document.getElementById(currentKm).appendChild(kmLabel);
 
         // Min kmLabel
@@ -91,11 +96,12 @@ function createAllInputs () {
         convertToSecButton.innerHTML = "LETS GO"
         convertToSecButton.addEventListener("click", onLETSGO)
         document.body.appendChild(convertToSecButton);
-
 }
 
+// Triggere after inputting km times
 function onLETSGO () {
     let arrayOfTimes = []
+    // Store inputted minute and seconds in arrays
     const minCollection = document.getElementsByClassName("minutes")
     const secCollection = document.getElementsByClassName("seconds")
 
@@ -103,6 +109,7 @@ function onLETSGO () {
         let minNum = parseFloat(minCollection[i].value)
         let secNum = parseFloat(secCollection[i].value)
 
+        // If inputs are empty, default to 0
         if (isNaN(minNum)){
             minNum = 0;
         }
@@ -111,14 +118,122 @@ function onLETSGO () {
             secNum = 0;
         }
 
+        // store added min+sec into array of times
         arrayOfTimes.push((minNum * 60) + secNum)
-        console.log(typeof minNum)
-        console.log(typeof secNum)
     }
-    console.log(arrayOfTimes)
+
+    // Check if distance is a whole number 
+    let raceDistance = document.getElementById("race-distance").innerHTML
+    let lastDecimalAmmount = 0
+    if (raceDistance % 1 !== 0){
+        // Delete last item from times array
+        lastDecimalAmmount += arrayOfTimes.pop() // Store time of final decimal distance
+    }
+
+    console.log('last Decimal Ammount: ' + lastDecimalAmmount)
+    console.log('arrayOfTimes: ' + arrayOfTimes)
+
+    let middle = arrayOfTimes.length / 2
+
+    console.log('arrayOfTimes.length / 2: ' + arrayOfTimes.length / 2)
+    console.log('middle: ' + middle)
+
+    let firstHalf = arrayOfTimes.slice(0, Math.floor(arrayOfTimes.length / 2)) // Array of minutes of first half
+    let secondHalf = arrayOfTimes.slice(Math.ceil(arrayOfTimes.length / 2)) // Array of minutes of second half
+    
+    // Odd number of indexes divide middle time in half
+    let oddMiddleStorageBox = [] // Store odd time
+    if (arrayOfTimes.length %2 !== 0 && raceDistance % 1 === 0){
+        oddMiddleStorageBox = arrayOfTimes[Math.floor((arrayOfTimes.length) / 2)]
+        firstHalf.push(oddMiddleStorageBox / 2) // Add half of middle distance in first
+        secondHalf.push(oddMiddleStorageBox / 2) // and second half of distance
+    }
+
+    console.log('oddMiddleStorageBox: ' + oddMiddleStorageBox)
+    console.log('firstHalf: ' + firstHalf)
+    console.log('secondHalf: ' + secondHalf)
+    
+    // Sum first half values
+    let fSum = 0;
+    firstHalf.forEach( num => {
+        fSum += num;
+        fSum += (lastDecimalAmmount / 2) // add half of any decimal ammount
+    })
+    console.log(oddMiddleStorageBox / 2 )
+    console.log('sum first half: ' + fSum)
+
+    // Sum second half values
+    // If odd, this excludes the middle value
+    let sSum = 0;
+    secondHalf.forEach( num => {
+        sSum += num;
+        sSum += (lastDecimalAmmount / 2) // add half of any decimal ammount 
+    })
+    console.log('sum second half: ' + sSum)
+
+
+    // Convert seconds to hr/min/sec
+    function secTommss2(sec){
+        return new Date(sec*1000).toUTCString().split(" ")[4]
+    }
+
+    let firstHalfMinToHrs = secTommss2(fSum)
+    let secondHalfMinToHrs = secTommss2(sSum)
+    
+    console.log(firstHalfMinToHrs)
+    console.log(secondHalfMinToHrs)
+
+    let determineSplit = sSum - fSum
+
+    if (determineSplit < 0) {
+        determineSplit = Math.abs(determineSplit)
+        console.log("\-" + secTommss2(determineSplit))
+    } else {
+        console.log(secTommss2(determineSplit))
+    }
+
+    return secTommss2(determineSplit)
 }
 
-// minutes to seconds per km
+
+// <tr id="distance-tr-head">
+// <th>Distance</th>
+// <th>Lap Length</th>
+// <th>Pace</th>
+// <th>Time Elapsed</th>
+// <th>Difference Last Km</th>
+// </tr>
+
+// <tr>
+// <th>Hippopotamus</th>
+// </tr>
+
+function generateTableData() {
+
+    let firstHalf = [] // Array of minutes of first half
+    let oddMiddleStorageBox = [] // Store odd nums middle index here
+    let secondHalf = [] // // Array of minutes of second half
+    
+    firstHalf = arrayOfTimes.slice(0, Math.floor(arrayOfTimes.length / 2))
+
+    console.log(firstHalf)
+
+
+
+    for (i = 0; i < totalDistance; i++){
+        document.createElement("th")
+        // convertToSecButton.innerHTML = [i]
+        // convertToSecButton.addEventListener("click", onLETSGO)
+        // document.body.appendChild(convertToSecButton);
+    }
+}
+  
+
+// if diatance is odd or not whole
+// divide the middle km by 2
+// 7 km, divide km 4 by 2
+// arrau will be 8 long
+// 21.1 array will be 22 long
 
 
 
