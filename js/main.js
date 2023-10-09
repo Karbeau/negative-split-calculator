@@ -4,6 +4,7 @@ document.addEventListener("keyup", function(event) {
     }
 })
 
+
 function createAllInputs () {
     let raceDistance = document.getElementById('raceDistance').value
     let wholeRD = parseFloat(raceDistance)
@@ -34,7 +35,6 @@ function createAllInputs () {
     container.id = "masterList"
     document.getElementById("pace-per-km").appendChild(container);
 
-
     // Create an input
     for (i = 1; i <= wholeRD; i++){
         let currentKm = "km" + i
@@ -60,33 +60,63 @@ function createAllInputs () {
   
         // Create input for above label
         let min = document.createElement("input");
-        min.type = "text"
+        min.type = "number"
         min.className = currentKm
         min.className += " timeInput"
+        min.className += " minutes"
         min.name = currentKm
         document.getElementById(currentKm).appendChild(min);
         
         // Sec label
         let secLabel = document.createElement("label");
-        secLabel.type = "text"
+        secLabel.htmlFor = currentKm
         secLabel.className = currentKm
         secLabel.innerHTML = "seconds:"
         document.getElementById(currentKm).appendChild(secLabel);
 
         // Create input for above label
         let sec = document.createElement("input");
-        sec.type = "text"
+        sec.type = "number"
         sec.className = currentKm
         sec.className += " timeInput"
+        sec.className += " seconds"
         sec.name = currentKm
         document.getElementById(currentKm).appendChild(sec);
     }
 
+    let convertToSec = document.createElement("button");
+        convertToSec.id = "convert-to-seconds"
+        convertToSec.innerHTML = "LETS GO"
+        convertToSec.addEventListener("click", onLETSGO)
+        document.body.appendChild(convertToSec);
+
 }
 
+function onLETSGO () {
+    let arrayOfTimes = []
+    const minCollection = document.getElementsByClassName("minutes")
+    const secCollection = document.getElementsByClassName("seconds")
+
+    for (let i = 0; i < minCollection.length; i++) {
+        let minNum = parseFloat(minCollection[i].value)
+        let secNum = parseFloat(secCollection[i].value)
+
+        if (isNaN(minNum)){
+            minNum = 0;
+        }
+
+        if (isNaN(secNum)){
+            secNum = 0;
+        }
+
+        arrayOfTimes.push((minNum * 60) + secNum)
+        console.log(typeof minNum)
+        console.log(typeof secNum)
+    }
+    console.log(arrayOfTimes)
+}
 
 // minutes to seconds per km
-// divide total distance in half
 
 
 
