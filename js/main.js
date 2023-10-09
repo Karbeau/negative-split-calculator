@@ -7,10 +7,10 @@ document.addEventListener("keyup", function(event) {
 
 function createAllInputs () {
     let raceDistance = document.getElementById('raceDistance').value
-    let wholeRD = parseFloat(raceDistance)
+    let numRaceDistance = parseFloat(raceDistance)
 
     // Check if distance is a number
-    if (isNaN(wholeRD)){
+    if (isNaN(numRaceDistance)){
         alert("Must input numbers");
         return false
     }
@@ -22,13 +22,13 @@ function createAllInputs () {
 
     // Half distance
     let newh2 = document.createElement("h2")
-    newh2.innerHTML = wholeRD/2
+    newh2.innerHTML = numRaceDistance/2
     document.getElementById('pace-per-km').appendChild(newh2);
 
 
     // Make 1 additional input for floats
-    if (wholeRD % 1 != 0){
-        wholeRD = parseInt(wholeRD) + 1
+    if (numRaceDistance % 1 != 0){
+        numRaceDistance = parseInt(numRaceDistance) + 1
     }
 
     let container = document.createElement("ul");
@@ -36,7 +36,7 @@ function createAllInputs () {
     document.getElementById("pace-per-km").appendChild(container);
 
     // Create an input
-    for (i = 1; i <= wholeRD; i++){
+    for (i = 1; i <= numRaceDistance; i++){
         let currentKm = "km" + i
 
         let container = document.createElement("ul");
@@ -45,13 +45,13 @@ function createAllInputs () {
         document.getElementById("masterList").appendChild(container);
 
         // Km label
-        let label = document.createElement("li");
-        label.className = currentKm
-        label.className += " kmLabel"
-        label.innerHTML = i
-        document.getElementById(currentKm).appendChild(label);
+        let kmLabel = document.createElement("li");
+        kmLabel.className = currentKm
+        kmLabel.className += " kmLabel"
+        kmLabel.innerHTML = i
+        document.getElementById(currentKm).appendChild(kmLabel);
 
-        // Min label
+        // Min kmLabel
         let minLabel = document.createElement("label");
         minLabel.htmlFor = currentKm
         minLabel.className = currentKm
@@ -59,13 +59,14 @@ function createAllInputs () {
         document.getElementById(currentKm).appendChild(minLabel);
   
         // Create input for above label
-        let min = document.createElement("input");
-        min.type = "number"
-        min.className = currentKm
-        min.className += " timeInput"
-        min.className += " minutes"
-        min.name = currentKm
-        document.getElementById(currentKm).appendChild(min);
+        let minInput = document.createElement("input");
+        minInput.type = "number"
+        minInput.min = 0
+        minInput.className = currentKm
+        minInput.className += " timeInput"
+        minInput.className += " minutes"
+        minInput.name = currentKm
+        document.getElementById(currentKm).appendChild(minInput);
         
         // Sec label
         let secLabel = document.createElement("label");
@@ -75,20 +76,21 @@ function createAllInputs () {
         document.getElementById(currentKm).appendChild(secLabel);
 
         // Create input for above label
-        let sec = document.createElement("input");
-        sec.type = "number"
-        sec.className = currentKm
-        sec.className += " timeInput"
-        sec.className += " seconds"
-        sec.name = currentKm
-        document.getElementById(currentKm).appendChild(sec);
+        let secInput = document.createElement("input");
+        secInput.type = "number"
+        secInput.min = 0
+        secInput.className = currentKm
+        secInput.className += " timeInput"
+        secInput.className += " seconds"
+        secInput.name = currentKm
+        document.getElementById(currentKm).appendChild(secInput);
     }
 
-    let convertToSec = document.createElement("button");
-        convertToSec.id = "convert-to-seconds"
-        convertToSec.innerHTML = "LETS GO"
-        convertToSec.addEventListener("click", onLETSGO)
-        document.body.appendChild(convertToSec);
+    let convertToSecButton = document.createElement("button");
+        convertToSecButton.id = "convert-to-seconds"
+        convertToSecButton.innerHTML = "LETS GO"
+        convertToSecButton.addEventListener("click", onLETSGO)
+        document.body.appendChild(convertToSecButton);
 
 }
 
