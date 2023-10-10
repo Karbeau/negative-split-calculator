@@ -182,6 +182,9 @@ function onLETSGO () {
     
     console.log(firstHalfMinToHrs)
     console.log(secondHalfMinToHrs)
+    let totalTimeSum = sSum + fSum
+    console.log('total time: ' + totalTimeSum)
+    console.log('total time: ' + secTommss2(totalTimeSum))
 
     let determineSplit = sSum - fSum
 
