@@ -19,19 +19,25 @@
 			<input type="button" id="btn" name="submitButton" value="Submit" onclick="createAllInputs()">
 		</form>
 
-		<main id="pace-per-km">
+		<main id="pace-per-km"></main>
 
-		<main>
-
-			<table>
-				<tr id="distance-tr-head">
-				  <th>Distance</th>
-				  <th>Lap Length</th>
-				  <th>Pace</th>
-				  <th>Time Elapsed</th>
-				  <th>Difference Last Km</th>
-				</tr>
+			<table id="splits-table">
+				<tbody id="splits-table-body">
+					<tr>
+					  <th>Distance</th>
+					  <th>Lap Length</th>
+					  <th>Pace</th>
+					  <th>Time Elapsed</th>
+					  <th>Difference Last Km</th>
+					</tr>
+				</tbody>
 			  </table>
+			  <table>
+				<tbody id="neg-split-table">
+
+				</tbody>
+			  </table>
+
 			  
 
 	<script type="text/javascript" src="js/main.js"></script>
