@@ -2,6 +2,7 @@
 document.addEventListener("keyup", function(event) {
     if (event.key === "Enter" && document.getElementById('raceDistance').value !== "") {
         document.getElementById("btn").click()
+        document.getElementById("btn").disabled = true;
     }
 })
 
@@ -20,7 +21,6 @@ function getRaceDistance(){
     if (numRaceDistance % 1 != 0){
         numRaceDistance = parseInt(numRaceDistance) + 1
     }
-
     return numRaceDistance
 }
 
@@ -31,87 +31,116 @@ function secTommss2(sec){
 
 // Populate correct num of inputs
 function createAllInputs () {
+    // Disable main input button
+    document.getElementById("btn").disabled = true
+
     let numRaceDistance = getRaceDistance()
     let raceDistance = document.getElementById('raceDistance').value
 
     // Full distance
     let numOfKms = document.createElement("h2")
-    numOfKms.innerHTML = document.getElementById('raceDistance').value
+    numOfKms.innerHTML = "Total Distance: "
+    numOfKms.innerHTML += document.getElementById('raceDistance').value
+    numOfKms.innerHTML += " KM"
     numOfKms.id = "race-distance"
-    document.getElementById('pace-per-km').appendChild(numOfKms);
-
-    // Half distance
-    let newh2 = document.createElement("h2")
-    newh2.innerHTML = numRaceDistance/2
-    document.getElementById('pace-per-km').appendChild(newh2);
-
+    document.getElementById('km-input').appendChild(numOfKms);
 
     // Make 1 additional input for floats
     if (numRaceDistance % 1 != 0){
         numRaceDistance = parseInt(numRaceDistance) + 1
     }
 
-    let container = document.createElement("ul");
-    container.id = "masterList"
-    document.getElementById("pace-per-km").appendChild(container);
+    let newSection = document.createElement("div");
+    newSection.id = "new-section"
+    document.getElementById("km-input").appendChild(newSection);
 
     // Create an input
     for (i = 1; i <= numRaceDistance; i++){
-        let currentKm = "km" + i
+        let currentKm = "KM " + i + " "
 
-        let container = document.createElement("ul");
-        container.id = currentKm
-        container.style.display = "flex"
-        document.getElementById("masterList").appendChild(container);
+        // Create tr
+        let kmUserInputs = document.createElement("div");
+        kmUserInputs.id = currentKm
+        kmUserInputs.className = "kmUserInputs"
+        kmUserInputs.className = "input-group"
+        kmUserInputs.className += " mb-3"
+        document.getElementById("new-section").appendChild(kmUserInputs);
 
         // Km label
-        let kmLabel = document.createElement("li");
+        let kmLabel = document.createElement("span");
         kmLabel.className = currentKm
         kmLabel.className += " kmLabel"
+        kmLabel.className += " input-group-text"
         if(i > raceDistance){ // If distance isn't a whole num, label with decimal (21.1 -> 0.1)
             let diff = i - raceDistance
-            kmLabel.innerHTML = (1 - diff).toFixed(2)
+            kmLabel.innerHTML = "KM " + (1 - diff).toFixed(2)
         } else {kmLabel.innerHTML = currentKm}
-
         document.getElementById(currentKm).appendChild(kmLabel);
 
-        // Min kmLabel
-        let minLabel = document.createElement("label");
-        minLabel.htmlFor = currentKm
-        minLabel.className = currentKm
-        minLabel.innerHTML = "minutes:"
-        document.getElementById(currentKm).appendChild(minLabel);
+        // Make BS floating form thing
+        let formFloatingDivMin = document.createElement("div");
+        formFloatingDivMin.className = "form-floating Min"
+        formFloatingDivMin.id = "form-floatingMin" + currentKm
+        document.getElementById(currentKm).appendChild(formFloatingDivMin);
+
   
-        // Create input for above label
+        // Create input for minutes
         let minInput = document.createElement("input");
         minInput.type = "number"
         minInput.min = 0
         minInput.className = currentKm
         minInput.className += " timeInput"
         minInput.className += " minutes"
+        minInput.className += " form-control"
+        minInput.id = "floatingInputGroupMin" + [i]
         minInput.name = currentKm
-        document.getElementById(currentKm).appendChild(minInput);
-        
-        // Sec label
-        let secLabel = document.createElement("label");
-        secLabel.htmlFor = currentKm
-        secLabel.className = currentKm
-        secLabel.innerHTML = "seconds:"
-        document.getElementById(currentKm).appendChild(secLabel);
+        minInput.placeholder = "minutes: "
+        document.getElementById("form-floatingMin" + currentKm).appendChild(minInput);
 
-        // Create input for above label
+        // Min Label
+        let minLabel = document.createElement("label");
+        minLabel.htmlFor = "floatingInputGroupMin" + [i]
+        minLabel.className = currentKm
+        minLabel.innerHTML = "minutes: "
+        document.getElementById("form-floatingMin" + currentKm).appendChild(minLabel);
+
+
+          // Make BS floating form thing
+        let formFloatingDivSec = document.createElement("div");
+        formFloatingDivSec.className = "form-floating Sec"
+        formFloatingDivSec.id = "form-floatingSec" + currentKm
+        document.getElementById(currentKm).appendChild(formFloatingDivSec);
+  
+
+        // Create input for seconds
         let secInput = document.createElement("input");
         secInput.type = "number"
         secInput.min = 0
         secInput.className = currentKm
         secInput.className += " timeInput"
         secInput.className += " seconds"
+        secInput.className += " form-control"
+        secInput.id = "floatingInputGroupSec" + [i]
         secInput.name = currentKm
-        document.getElementById(currentKm).appendChild(secInput);
+        secInput.placeholder = "seconds: "
+        document.getElementById("form-floatingSec" + currentKm).appendChild(secInput);
+
+        // Sec label
+        let secLabel = document.createElement("label");
+        secLabel.htmlFor = "floatingInputGroupSec" + [i]
+        secLabel.className = currentKm
+        secLabel.innerHTML = "seconds: "
+        document.getElementById("form-floatingSec" + currentKm).appendChild(secLabel);
     }
+
+
+
+// TESTTTT
+
 
     let convertToSecButton = document.createElement("button");
         convertToSecButton.id = "convert-to-seconds"
+        convertToSecButton.className = " button-5"
         convertToSecButton.innerHTML = "LETS GO"
         convertToSecButton.addEventListener("click", onLETSGO)
         document.body.appendChild(convertToSecButton);
@@ -192,7 +221,6 @@ function populateTable () {
             secNum = 0;
         }
         pacePerKm.innerHTML = minNum + ":" + secNum
-        console.log(pacePerKm.innerHTML)
         document.getElementById("km" + i + "-row").appendChild(pacePerKm);
 
         //////////////////// Fourth column elapsed time
@@ -236,31 +264,41 @@ function populateTable () {
 
 //////////////////// Trigger after inputting km times ////////////////////
 function onLETSGO () {
+    // Disable button - page must be reloaded to input different km times
+    // you should come back and change this later!!!!!
+    document.getElementById("convert-to-seconds").disabled = true
     document.getElementById("splits-table").style.display = "block"
+
+    // Hide the km inputs - users need to reload page to input new times
+    // lap length displays input time
+    document.getElementById("km-input").style.display = "none"
+
     let arrayOfTimes = createArrayOfTimes()
 
     // Check if distance is a whole number 
-    let raceDistance = document.getElementById("race-distance").innerHTML
+    let raceDistance = document.getElementById('raceDistance').value
+    //let raceDistance = document.getElementById("race-distance").innerHTML
     let lastDecimalAmmount = []
+    console.log("race distance: " + raceDistance)
     if (raceDistance % 1 !== 0){
         // Delete last item from times array
         lastDecimalAmmount += arrayOfTimes.pop() // Store time of final decimal distance
     }
-    console.log(arrayOfTimes)
+    console.log("array of times: " + arrayOfTimes)
     console.log("decimal storage: " + lastDecimalAmmount)
 
     let firstHalf = arrayOfTimes.slice(0, Math.floor(arrayOfTimes.length / 2)) // Array of minutes of first half
     let secondHalf = arrayOfTimes.slice(Math.ceil(arrayOfTimes.length / 2)) // Array of minutes of second half
-    
+
     // Odd number of indexes divide middle time in half
     let oddMiddleStorageBox = [] // Store odd time
-    if (arrayOfTimes.length %2 !== 0 ){
+    if (raceDistance %2 !== 0 ){
         oddMiddleStorageBox = arrayOfTimes[Math.floor((arrayOfTimes.length) / 2)]
         firstHalf.push(oddMiddleStorageBox / 2) // Add half of middle distance in first
         secondHalf.push(oddMiddleStorageBox / 2) // and second half of distance
     }
 
-    console.log(arrayOfTimes)
+    console.log("array of times: " + arrayOfTimes)
     console.log('oddMiddleStorageBox: ' + oddMiddleStorageBox)
     console.log('firstHalf: ' + firstHalf)
     console.log('secondHalf: ' + secondHalf)
@@ -285,23 +323,20 @@ function onLETSGO () {
 
     let firstHalfMinToHrs = secTommss2(fSum)
     let secondHalfMinToHrs = secTommss2(sSum)
-    
-    console.log(firstHalfMinToHrs)
-    console.log(secondHalfMinToHrs)
     let totalTimeSum = sSum + fSum
 
     console.log('total time: ' + totalTimeSum)
     console.log('total time: ' + secTommss2(totalTimeSum))
 
     let determineSplit = sSum - fSum
-    console.log("determine split" + determineSplit)
+    console.log("Split Seconds: " + determineSplit)
 
     let split;
     if (determineSplit < 0) {
         determineSplit = Math.abs(determineSplit)
         determineSplit = "\-" + secTommss2(determineSplit)
     } else {
-        determineSplit = secTommss2(determineSplit)
+        determineSplit = "\+" + secTommss2(determineSplit)
     }
 
 
@@ -332,7 +367,6 @@ function onLETSGO () {
     overallTableTitle.innerHTML = "Overall Split"
     document.getElementById("split-row").appendChild(overallTableTitle);
 
-
     //////////////////// Total Time
     let totalTime = document.createElement("td")
     totalTime.id = "split"
@@ -346,17 +380,13 @@ function onLETSGO () {
 
     //////////////////// Second Splits
     let secondHalfSplit = document.createElement("td")
-    secondHalfSplit.innerHTML = firstHalfMinToHrs
+    secondHalfSplit.innerHTML = secondHalfMinToHrs
     document.getElementById("split-data").appendChild(secondHalfSplit);
 
     //////////////////// Overall Split
     let overallSplit = document.createElement("td")
     overallSplit.innerHTML = determineSplit
     document.getElementById("split-data").appendChild(overallSplit);
-
-
-
-    console.log(determineSplit)
 
     populateTable()
     return determineSplit

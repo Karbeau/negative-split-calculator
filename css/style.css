@@ -22,21 +22,26 @@
 /*******************************************/
 
 body {
-
+     font-family: 'Lato', sans-serif;
+     padding: 2rem;
 }
 
+h1, h2, h3, h4, h5, h6 {
+     font-family: 'Young Serif', serif;
+}
+
+h1 {
+     padding-bottom: 1rem;
+}
+
+button {
+     background-color: pink;
+}
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-header {
-
-}
-
-footer {
-
-}
-
+/* 
 main input {
      display: block;
 }
@@ -56,7 +61,60 @@ li {
 .kmLabel {
      font-weight: bold;
 
+} */
+
+/* CSS */
+.button-5 {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  min-height: 1rem;
+  padding: calc(.625rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
 }
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+.button-5:disabled {
+     background-color: #ffb17d;
+     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+     transform: translateY(0);
+     cursor: default;
+   }
 
 /******************************************
 /* ADDITIONAL STYLES
@@ -65,36 +123,29 @@ li {
 
 table {
      border-collapse: collapse;
-     letter-spacing: 1px;
-     font-size: 0.8rem;
-   }
-   
-   td, th {
-     border: 1px solid rgb(190,190,190);
+     margin-bottom: 2rem;
+}
+
+td, th {
      padding: 10px 20px;
-   }
-   
-   th {
+}
+
+th {
      background-color: rgb(235,235,235);
-   }
-   
-   td {
-     text-align: center;
-   }
-   
-   tr:nth-child(even) td {
-     background-color: rgb(250,250,250);
-   }
-   
-   tr:nth-child(odd) td {
-     background-color: rgb(245,245,245);
-   }
-   
-   caption {
-     padding: 10px;
-   }
+}
 
  /* Table is initially hidden */
-   #splits-table {
+#splits-table {
      display: none;
-   }
+}
+
+/* 
+
+.kmUserInputs {
+     border-bottom: 1px solid #f2f2f2;
+}
+
+.KM {    
+     margin: 0.125rem;
+     vertical-align: baseline;
+} */
