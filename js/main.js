@@ -52,6 +52,7 @@ function createAllInputs () {
 
     let newSection = document.createElement("div");
     newSection.id = "new-section"
+    newSection.style.width = "fit-content"
     document.getElementById("km-input").appendChild(newSection);
 
     // Create an input
