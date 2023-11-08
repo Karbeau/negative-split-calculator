@@ -43,7 +43,7 @@ function createAllInputs () {
     numOfKms.innerHTML += document.getElementById('raceDistance').value
     numOfKms.innerHTML += " KM"
     numOfKms.id = "race-distance"
-    document.getElementById('km-input').appendChild(numOfKms);
+    document.getElementById('race-distance-form').appendChild(numOfKms);
 
     // Make 1 additional input for floats
     if (numRaceDistance % 1 != 0){
