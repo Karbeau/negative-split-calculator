@@ -29,16 +29,16 @@ body {
      padding-bottom: 200px;
 }
 
-.main-section {
-     padding: 0 4rem;
-}
-
 h1, h2, h3, h4, h5, h6 {
      font-family: 'Young Serif', serif;
 }
 
 h1 {
      padding-bottom: 1rem;
+}
+
+h5 {
+     font-family: 'Lato', sans-serif;
 }
 
 button {
@@ -133,25 +133,35 @@ table {
 }
 
 td, th {
-     padding: 10px 20px;
+     padding: 10px 20px !important;
+     font-weight: normal;
 }
 
-th {
-     background-color: rgb(235,235,235);
+td {
+     font-weight: bold;
+}
+
+tr {
+     border: 1px solid #dee2e6;
 }
 
  /* Table is initially hidden */
-#splits-table {
+#splits-table, #split-data {
      display: none;
 }
 
-/* 
-
-.kmUserInputs {
-     border-bottom: 1px solid #f2f2f2;
+#split-data tr {
+     padding: 1rem;
 }
 
-.KM {    
-     margin: 0.125rem;
-     vertical-align: baseline;
-} */
+/******************************************
+/* MORE STYLES
+/*******************************************/
+
+.form-check ul {
+     list-style: none;
+}
+
+.blockquote-footer a {
+     color: inherit;
+}

@@ -33,18 +33,12 @@ function secTommss2(sec){
 function createAllInputs () {
     // Disable main input button
     document.getElementById("btn").disabled = true
+    document.getElementById("race-distance-form").style.display = "none"
 
     let numRaceDistance = getRaceDistance()
     let raceDistance = document.getElementById('raceDistance').value
 
-    // Full distance
-    let numOfKms = document.createElement("h2")
-    numOfKms.innerHTML = "Total Distance: "
-    numOfKms.innerHTML += document.getElementById('raceDistance').value
-    numOfKms.innerHTML += " KM"
-    numOfKms.id = "race-distance"
-    document.getElementById('race-distance-form').appendChild(numOfKms);
-
+    //////////////////// Create inputs
     // Make 1 additional input for floats
     if (numRaceDistance % 1 != 0){
         numRaceDistance = parseInt(numRaceDistance) + 1
@@ -134,17 +128,13 @@ function createAllInputs () {
         document.getElementById("form-floatingSec" + currentKm).appendChild(secLabel);
     }
 
-
-
-// TESTTTT
-
-
+    // Lets Go Button
     let convertToSecButton = document.createElement("button");
         convertToSecButton.id = "convert-to-seconds"
         convertToSecButton.className = " button-5"
         convertToSecButton.innerHTML = "LETS GO"
         convertToSecButton.addEventListener("click", onLETSGO)
-        document.body.appendChild(convertToSecButton);
+        document.getElementById("user-inputs").appendChild(convertToSecButton);
 }
 
 //////////////////// Create array with times as seconds ////////////////////
@@ -178,6 +168,9 @@ function createArrayOfTimes () {
 function populateTable () {
     let raceDistance = document.getElementById('raceDistance').value // Maintains decimal point
     let numRaceDistance = getRaceDistance() // Creates whole num from race distance
+    
+    // Scroll to top of page on button press
+    window.scrollTo(0, 0);
 
     for (i = 1; i <= numRaceDistance; i++){
         let currentKm = "km" + i
@@ -269,6 +262,7 @@ function onLETSGO () {
     // you should come back and change this later!!!!!
     document.getElementById("convert-to-seconds").disabled = true
     document.getElementById("splits-table").style.display = "block"
+    document.getElementById("split-data").style.display = "block"
 
     // Hide the km inputs - users need to reload page to input new times
     // lap length displays input time
@@ -332,7 +326,6 @@ function onLETSGO () {
     let determineSplit = sSum - fSum
     console.log("Split Seconds: " + determineSplit)
 
-    let split;
     if (determineSplit < 0) {
         determineSplit = Math.abs(determineSplit)
         determineSplit = "\-" + secTommss2(determineSplit)
@@ -340,54 +333,33 @@ function onLETSGO () {
         determineSplit = "\+" + secTommss2(determineSplit)
     }
 
-
-    //////////////////// Create Table of splits at end of kms table
-    let splitsRow = document.createElement("tr");
-    splitsRow.id = "split-row"
-    document.getElementById("neg-split-table").appendChild(splitsRow);
-
-    let splitsTableTitle = document.createElement("th")
-    splitsTableTitle.id = "split"
-    splitsTableTitle.innerHTML = "Total Time"
-    document.getElementById("split-row").appendChild(splitsTableTitle);
-
-    let splitsTableFH = document.createElement("th")
-    splitsTableFH.innerHTML = "Total Time First Half"
-    document.getElementById("split-row").appendChild(splitsTableFH);
-
-    let splitsTableSH = document.createElement("th")
-    splitsTableSH.innerHTML = "Total Time Second Half"
-    document.getElementById("split-row").appendChild(splitsTableSH);
-
-    let splitsDataRow = document.createElement("tr");
-    splitsDataRow.id = "split-data"
-    document.getElementById("neg-split-table").appendChild(splitsDataRow);
-
-    let overallTableTitle = document.createElement("th")
-    overallTableTitle.id = "split"
-    overallTableTitle.innerHTML = "Overall Split"
-    document.getElementById("split-row").appendChild(overallTableTitle);
+    //////////////////// Input values into the DOM
+    
+    // Full distance
+    let numOfKms = document.createElement("td")
+    numOfKms.innerHTML = document.getElementById('raceDistance').value
+    numOfKms.innerHTML += " KM"
+    document.getElementById('totalDistance').appendChild(numOfKms);
 
     //////////////////// Total Time
     let totalTime = document.createElement("td")
-    totalTime.id = "split"
-    totalTime.innerHTML = secTommss2(totalTimeSum)
-    document.getElementById("split-data").appendChild(totalTime);
+    totalTime.innerHTML += secTommss2(totalTimeSum)
+    document.getElementById("totalTime").appendChild(totalTime);
 
     //////////////////// First Splits
     let firstHalfSplit = document.createElement("td")
-    firstHalfSplit.innerHTML = firstHalfMinToHrs
-    document.getElementById("split-data").appendChild(firstHalfSplit);
+    firstHalfSplit.innerHTML += firstHalfMinToHrs
+    document.getElementById("FHTime").appendChild(firstHalfSplit);
 
     //////////////////// Second Splits
     let secondHalfSplit = document.createElement("td")
-    secondHalfSplit.innerHTML = secondHalfMinToHrs
-    document.getElementById("split-data").appendChild(secondHalfSplit);
+    secondHalfSplit.innerHTML += secondHalfMinToHrs
+    document.getElementById("SHTime").appendChild(secondHalfSplit);
 
     //////////////////// Overall Split
     let overallSplit = document.createElement("td")
-    overallSplit.innerHTML = determineSplit
-    document.getElementById("split-data").appendChild(overallSplit);
+    overallSplit.innerHTML += determineSplit
+    document.getElementById("split").appendChild(overallSplit);
 
     populateTable()
     return determineSplit
