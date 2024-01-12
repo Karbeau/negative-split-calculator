@@ -364,4 +364,3 @@ function onLETSGO () {
     populateTable()
     return determineSplit
 }
-
