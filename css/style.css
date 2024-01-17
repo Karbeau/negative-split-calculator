@@ -37,7 +37,7 @@ h1 {
      padding-bottom: 1rem;
 }
 
-h5 {
+h4, h5 {
      font-family: 'Lato', sans-serif;
 }
 
@@ -146,7 +146,7 @@ tr {
 }
 
  /* Table is initially hidden */
-#splits-table, #split-data {
+#splits-table, #split-data, #km-input {
      display: none;
 }
 
@@ -155,7 +155,7 @@ tr {
 }
 
 /******************************************
-/* MORE STYLES
+/* 
 /*******************************************/
 
 .form-check ul {
@@ -174,3 +174,8 @@ tr {
 .btn-link.collapsed .bi-chevron-down {
   transform: rotate(-90deg);
 }
+
+
+/******************************************
+/* Bootstrap Component Additional Styles
+/*******************************************/

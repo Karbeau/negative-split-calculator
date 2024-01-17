@@ -32,7 +32,7 @@
 		<!-- Header -->
 		<header class="container-fluid mb-3">
 			<nav class="navbar navbar-expand-lg">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="./index.html">
 					<img src="./resources/images/Split.png" alt="Logo" width="120">
 					Negative Split Calculator
 				</a>
@@ -43,8 +43,7 @@
 					<div class="navbar-nav ms-auto">
 				  		<a class="nav-link active" aria-current="page" href="#">Home</a>
 				  		<a class="nav-link" href="#">About</a>
-				  		<a class="nav-link" href="#">FAQs</a>
-				  		<a class="nav-link" href="#">Contact</a>
+				  		<a class="nav-link" href="./faq.html">FAQs</a>
 					</div>
 				</div>
 			</nav>
@@ -57,17 +56,30 @@
 				<section class="col-sm" id="user-inputs">
 					<h1>Did you negative split?</h1>
 				
-					<form action="javascript:void(0)" method="post" id="race-distance-form">
+					<form action="javascript:void(0)" method="post" class="race-distance-form">
+						<h4>Manually Input Times: <i class="bi bi-question-circle-fill" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Input each km/mile time manually. First input the race distance. Include decimals in the distance ex.5.01, this will ensure the lap times are accurate"></i></h4>
 						<label for="raceDistance">Race Distance:</label>
 						<input type="text" id="raceDistance" name="raceDistance">
 					
 						<input type="button" id="btn" class="button-5" name="submitButton" value="Submit" onclick="createAllInputs()">
 					</form>
-				
-					<section id="km-input">
-					</section>
+
+					<!-- Upload via CSV file -->
+					<hr>
+					<form action="javascript:void(0)" method="post" class="race-distance-form">
+						<h4>Upload CSV File <i class="bi bi-question-circle-fill" data-bs-toggle="popover" data-bs-placement="right" data-bs-html="true" data-bs-content="Upload a CSV file of your run. You can download your CSV file with Garmin Connect."></i></h4>
+						<san.0
+						 ><a>How?</a></p>
+						<!-- Papa Parse -->
+						<input type='file' id="UploadFile" accept=".csv">
+						<button class ="button-5" id="uploadsuccess">file uploaded</button>
+					</form>
 				
 					<!-- Initially hidden data tables -->
+					<section id="km-input">
+						<h4>Input km/mile times</h4>
+						<p>Input the time of each <em data-bs-toggle="tooltip" data-bs-title="Default tooltip">lap</em></p>
+					</section>
 					<main>
 						<table id="splits-table" class="table table-striped">
 							<tbody id="splits-table-body">
@@ -155,13 +167,7 @@
 						  </div>
 						</div>
 					  </div>
-
-
-
-
-				
 				</section>
-
 			</div>
 		</div> 
 
@@ -183,10 +189,16 @@
 		  </div>
 		</div>
 
+		<!-- Popper JS -->
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 		<!-- Bootstrap JS -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 		<!-- Local JS file -->
 		<script type="text/javascript" src="js/main.js"></script>
+		<script src="js/papaparse.min.js"></script>
+		<script src="js/parseCSV.js"></script>
+		<script src="js/popperInit.js"></script>
+
 	</body>
 </html>

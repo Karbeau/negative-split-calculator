@@ -33,7 +33,12 @@ function secTommss2(sec){
 function createAllInputs () {
     // Disable main input button
     document.getElementById("btn").disabled = true
-    document.getElementById("race-distance-form").style.display = "none"
+    let formArray = document.querySelectorAll(".race-distance-form")
+    formArray.forEach((element) => (element.style.display = "none"))
+
+    // Hide the km inputs - users need to reload page to input new times
+    // lap length displays input time
+    document.getElementById("km-input").style.display = "block"
 
     let numRaceDistance = getRaceDistance()
     let raceDistance = document.getElementById('raceDistance').value
