@@ -68,11 +68,39 @@
 					<hr>
 					<form action="javascript:void(0)" method="post" class="race-distance-form">
 						<h4>Upload CSV File <i class="bi bi-question-circle-fill" data-bs-toggle="popover" data-bs-placement="right" data-bs-html="true" data-bs-content="Upload a CSV file of your run. You can download your CSV file with Garmin Connect."></i></h4>
-						<san.0
-						 ><a>How?</a></p>
+
+						<p class="d-inline-flex gap-1">
+							<button class="btn btn-secondary collapsed" data-bs-toggle="collapse" href="#CSVFaq" aria-expanded="false" aria-controls="CSVFaq">How to get a CSV file from Garmin Connect
+							  <i class="bi bi-chevron-down icon-link" aria-hidden="true"></i>
+							</button>
+						</p>
+						<div id="CSVFaq" class="collapse">
+							<div class="card">
+								<ol>
+									<li class="card-body">
+									On a desktop navigate to <a href="https://connect.garmin.com/" rel="nofollow" target="_blank">connect.garmin.com </a>.
+									Sign in and access the run you want to save.</li>
+									<img src="./resources/images/GarminRunCSV1.png" class="w-100">
+									<hr>
+									<li>Navigate to the top right corner <i class="bi bi-gear-fill"></i> gear icon</li>
+									<img src="./resources/images/GarminRunCSV2.png" class="w-50">
+									<hr>
+									<li>Click on Export Splits to CSV</li>
+									<img src="./resources/images/GarminRunCSV3.png" class="w-50">
+									<hr>
+									<li>The CSV file should automatically download.</li>
+									<img src="./resources/images/GarminRunCSV4.png" class="w-50">
+									<hr>
+									<li>Click on <u>Choose file</u> below and find the CSV file in your downloads folder, or drag and drop it into the input below.</li>
+								</ol>
+							</div>
+						</div>
+
 						<!-- Papa Parse -->
-						<input type='file' id="UploadFile" accept=".csv">
-						<button class ="button-5" id="uploadsuccess">file uploaded</button>
+						<div class="input-group w-75">
+							<input type="file" class="form-control" id="UploadFile" accept=".csv">
+							<label id="uploadSuccess" class="input-group-text button-5">Upload</label>
+						</div>
 					</form>
 				
 					<!-- Initially hidden data tables -->
@@ -113,6 +141,7 @@
 						</table>
 					</main>
 				</section>
+				
 			
 			<!-- What is a negative split right col -->
 				<section class="col-sm">

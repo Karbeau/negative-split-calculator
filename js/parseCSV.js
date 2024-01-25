@@ -1,6 +1,6 @@
 // Parse local CSV File using Papa Parse
 let data
-const uploadsuccess=document.getElementById("uploadsuccess").addEventListener("click", () => {
+const uploadsuccess=document.getElementById("uploadSuccess").addEventListener("click", () => {
     Papa.parse(document.getElementById('UploadFile').files[0], {
         header: true,
         //quotes: true,

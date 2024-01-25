@@ -158,24 +158,32 @@ tr {
 /* 
 /*******************************************/
 
-.form-check ul {
-     list-style: none;
-}
-
-.blockquote-footer a {
-     color: inherit;
-}
-
-
-
-.bi-chevron-down {
+/* .bi-chevron-down {
     transition: all 0.3s ease;
  }
 .btn-link.collapsed .bi-chevron-down {
   transform: rotate(-90deg);
-}
+} */
 
+
+.bi-chevron-down {
+     transition: all 0.3s ease;
+  }
+ button.collapsed .bi-chevron-down {
+   transform: rotate(-90deg);
+ }
 
 /******************************************
 /* Bootstrap Component Additional Styles
 /*******************************************/
+
+.btn-link {
+     text-decoration: none;
+     color: inherit;
+     font-weight: bold;
+}
+
+
+#CSVFaq {
+     font-weight: bold;
+}
