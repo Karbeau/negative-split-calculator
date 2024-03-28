@@ -99,6 +99,52 @@ header {
   width: auto;
 }
 
+.button-5-secondary {
+     align-items: center;
+     background-clip: padding-box;
+     background-color: transparent;
+     border: 1px solid #9c9c9c;
+     border-radius: .25rem;
+     box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+     box-sizing: border-box;
+     color: #9c9c9c;
+     cursor: pointer;
+     display: inline-flex;
+     font-family: 'Lato', sans-serif;
+     font-size: 1rem;
+     font-weight: 600;
+     justify-content: center;
+     line-height: 1;
+     margin: 0;
+     min-height: 1rem;
+     padding: calc(.625rem - 1px) calc(1.5rem - 1px);
+     position: relative;
+     text-decoration: none;
+     transition: all 250ms;
+     user-select: none;
+     -webkit-user-select: none;
+     touch-action: manipulation;
+     vertical-align: baseline;
+     width: auto;
+   }
+
+.button-5-secondary:hover,
+.button-5-secondary:focus {
+  border-color: #fb8332;
+  color:#fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5-secondary:hover {
+  transform: translateY(-1px);
+}
+
+.button-5-secondary:active {
+     background-color: #f9f9f9;
+     box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+     transform: translateY(0);
+   }
+
 .button-5:hover,
 .button-5:focus {
   background-color: #fb8332;
@@ -157,14 +203,6 @@ tr {
 /******************************************
 /* 
 /*******************************************/
-
-/* .bi-chevron-down {
-    transition: all 0.3s ease;
- }
-.btn-link.collapsed .bi-chevron-down {
-  transform: rotate(-90deg);
-} */
-
 
 .bi-chevron-down {
      transition: all 0.3s ease;

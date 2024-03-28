@@ -42,21 +42,26 @@
 				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 					<div class="navbar-nav ms-auto">
 				  		<a class="nav-link active" aria-current="page" href="#">Home</a>
-				  		<a class="nav-link" href="#">About</a>
-				  		<a class="nav-link" href="./faq.html">FAQs</a>
+				  		<a class="nav-link" href="faq.html">FAQ</a>
+						<a class="nav-link" href="contact.html">Contact</a>
 					</div>
 				</div>
 			</nav>
 		</header>
+		<!-- Header End -->
+		
+		<!-- Hero Page Title -->
+		<div class="px-4 py-5 mb-3 bg-light-subtle">
+			<h1 class="display-4">Did you negative split?</h1>
+		</div>
+		<!-- Hero Page Title End -->
 
 		<!-- User input km distance -->
 		<div class="container">
 			<div class="row">
 
 				<section class="col-sm" id="user-inputs">
-					<h1>Did you negative split?</h1>
-				
-					<form action="javascript:void(0)" method="post" class="race-distance-form">
+					<form action="javascript:void(0)" method="post" class="race-distance-form my-5">
 						<h4>Manually Input Times: <i class="bi bi-question-circle-fill" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Input each km/mile time manually. First input the race distance. Include decimals in the distance ex.5.01, this will ensure the lap times are accurate"></i></h4>
 						<label for="raceDistance">Race Distance:</label>
 						<input type="text" id="raceDistance" name="raceDistance">
@@ -66,8 +71,14 @@
 
 					<!-- Upload via CSV file -->
 					<hr>
-					<form action="javascript:void(0)" method="post" class="race-distance-form">
+					<form action="javascript:void(0)" method="post" class="race-distance-form my-5">
 						<h4>Upload CSV File <i class="bi bi-question-circle-fill" data-bs-toggle="popover" data-bs-placement="right" data-bs-html="true" data-bs-content="Upload a CSV file of your run. You can download your CSV file with Garmin Connect."></i></h4>
+
+					<!-- Papa Parse -->
+					<div class="input-group w-75 py-1">
+						<input type="file" class="form-control" id="UploadFile" accept=".csv">
+						<label id="uploadSuccess" class="input-group-text button-5">Upload</label>
+					</div>
 
 						<p class="d-inline-flex gap-1">
 							<button class="btn btn-secondary collapsed" data-bs-toggle="collapse" href="#CSVFaq" aria-expanded="false" aria-controls="CSVFaq">How to get a CSV file from Garmin Connect
@@ -96,11 +107,6 @@
 							</div>
 						</div>
 
-						<!-- Papa Parse -->
-						<div class="input-group w-75">
-							<input type="file" class="form-control" id="UploadFile" accept=".csv">
-							<label id="uploadSuccess" class="input-group-text button-5">Upload</label>
-						</div>
 					</form>
 				
 					<!-- Initially hidden data tables -->
@@ -143,17 +149,24 @@
 				</section>
 				
 			
-			<!-- What is a negative split right col -->
+				<!-- What is a negative split right col -->
 				<section class="col-sm">
-					<h4>What is a Negative Split?</h4>
-					<h5>And why would I want one?</h5>
+					
+
+					<div class="card">
+						<div class="card-body">
+						  <h5 class="card-title">Calculator Help</h5>
+						  <p class="card-text">Looking for information on negative splits? Why would anyone want one? Check the <a href="faq.html">FAQ page</a></p>
+						  <a href="faq.html" class="btn btn-primary">Negative Split FAQ</a>
+						</div>
+					  </div>
 
 					<div id="accordion">
 						<div class="card">
 						  <div class="card-header" id="headingOne">
 							<h5 class="mb-0 faq-title">
 							  <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								What is a negative split?
+								How do I find my lap times?
 								<i class="bi bi-chevron-down icon-link" aria-hidden="true"></i>
 							  </button>
 							</h5>
@@ -165,11 +178,12 @@
 								<p>Alternate strategies include <em>even splitting</em> (racing at a steady pace) or <em>sit and kick</em> (also known as a sprint finish). Conversely, the act of completing the first half of a race faster than the second half is known as a <em>positive split.</em></p>							</div>
 						  </div>
 						</div>
+
 						<div class="card">
 						  <div class="card-header" id="headingTwo">
 							<h5 class="mb-0 faq-title">
 							  <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Collapsible Group Item #2
+								Why is my <em>Total Elapsed Time</em> not correct?
 								<i class="bi bi-chevron-down icon-link" aria-hidden="true"></i>
 							  </button>
 							</h5>
@@ -184,7 +198,7 @@
 						  <div class="card-header" id="headingThree">
 							<h5 class="mb-0">
 							  <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								Collapsible Group Item #3
+								How is the split calculated?
 								<i class="bi bi-chevron-down icon-link" aria-hidden="true"></i>
 							  </button>
 							</h5>
@@ -210,9 +224,8 @@
 			  
 			  <ul class="nav col-md-4 justify-content-end">
 				<li class="nav-item"><a href="#" class="nav-link text-dark" aria-current="page">Home</a></li>
-				<li class="nav-item"><a href="faq.html" class="nav-link  text-secondary">About</a></li>
-				<li class="nav-item"><a href="faq.html" class="nav-link text-secondary">FAQs</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-secondary">Contact</a></li>
+				<li class="nav-item"><a href="faq.html" class="nav-link text-secondary">FAQ</a></li>
+				<li class="nav-item"><a  href="contact.html" class="nav-link text-secondary">Contact</a></li>
 			  </ul>
 			</footer>
 		  </div>
